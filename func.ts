@@ -39,6 +39,8 @@ function push(array: any[], ...items: any[]) {
 
 let a = [];
 push(a, 1, 2, 3);
+push({}, 1, 2, 3);
+
 
 // override
 function reverse(x: number): number;

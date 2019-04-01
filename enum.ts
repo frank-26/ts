@@ -13,3 +13,27 @@ enum Color1 {Red, Green, Blue = "blue".length};
 
 //如果紧接在计算所得项后面的是未手动赋值的项，那么它就会因为无法获得初始值而报错：
 enum Color {Red = "red".length, Green, Blue};
+
+enum CardSuit {
+  Clubs,
+  Diamonds,
+  Hearts,
+  Spades
+}
+
+// Sample usage
+var card = CardSuit.Clubs;
+console.log(card)
+// card = '1324'
+
+enum Color2 {
+  Red,     // 0
+  Green,   // 1
+  Blue     // 2
+}
+
+enum Color3 {
+  Red=3,     // 3
+  Green,   // 4
+  Blue     // 5
+}
