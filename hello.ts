@@ -37,4 +37,75 @@ console.log(myFavoriteNumber1.length); // 5
 myFavoriteNumber1 = 7;
 console.log(myFavoriteNumber1.length);
 
-// 
+// 对象字面量的惰性初始化
+
+let foox = {
+  bar: 123,
+  bas: 'Hello World'
+};
+
+let foo1111 = {} as any;
+foo1111.bar = 123;
+foo1111.bas = 'Hello World';
+
+// interface Foo {
+//   bar: number;
+//   bas: string;
+// }
+
+// let fooc = {} as Foo;
+// fooc.bar = 123;
+// fooc.bas = 'Hello World';
+
+type Foo = {
+  readonly bar: number;
+  readonly bas: number;
+};
+
+// 初始化
+const foo: Foo = { bar: 123, bas: 456 };
+
+// 不能被改变
+foo.bar = 456; // Error: foo.bar 为仅读属性
+
+
+interface Foo1 {
+  readonly [x: number]: number;
+}
+
+// 使用
+
+const foo1: Foo1 = { 0: 123, 2: 345 };
+console.log(foo1[0]); // ok（读取）
+foo1[0] = 456; // Error: 属性只读
+
+interface Foox {
+  readonly bar: number;
+}
+
+// let foox: Foox = {
+//   bar: 123
+// };
+
+function iTakeFoo(foox: Foox) {
+  foox.bar = 456; // Error: bar 属性只读
+}
+
+iTakeFoo(foox);
+
+let bas = (...args: number[]) => {};
+bas()
+bas(1,2,3)
+
+
+const colors = {
+  red: 'red',
+  blue: 'blue'
+};
+
+type Colors = keyof typeof colors;
+
+let color: Colors; // color 的类型是 'red' | 'blue'
+color = 'red'; // ok
+color = 'blue'; // ok
+color = 'anythingElse'; // Error

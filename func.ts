@@ -53,3 +53,77 @@ function reverse(x: number | string): number | string {
     }
 }
 
+function foo(bar: number, bas?: string): void {
+  // ..
+}
+
+foo(123);
+foo(123, 'hello');
+
+function foo1(bar: number, bas: string = 'hello') {
+  console.log(bar, bas);
+}
+
+foo1(123); // 123, hello
+foo1(123, 'world'); // 123, world
+
+const simple: (foo: number) => string = foo => foo.toString();
+
+interface CallMeWithNewToGetString {
+  new (): string;
+}
+
+// 使用
+declare const Foo: CallMeWithNewToGetString;
+const bar = new Foo(); // bar 被推断为 string 类型
+
+// 使用类型注解的箭头函数
+function twoParams(a: number, b: number) {
+  return a + b;
+}
+
+let curryOne = (x: number = 1) => twoParams(123, x);
+curryOne(456); // ok
+curryOne('456'); // Error
+
+// 为什么一个返回值不是 void 的函数，可以赋值给一个返回值为 void 的函数？
+function doSomething(): number {
+  return 42;
+}
+
+function callMeMaybe(callback: () => void) {
+  callback();
+}
+
+// Expected an error because 'doSomething' returns number, but 'callMeMaybe'
+// expects void-returning function
+callMeMaybe(doSomething);
+// 一个返回值类型为 void 的函数，它会说：“无论你的返回值是否存在，我都不会检查它”。
+let items = [1, 2];
+callMeMaybe(() => items.push(3));
+
+interface ReturnString {
+  (): string;
+}
+
+declare const qipa: ReturnString;
+
+const qip = qipa(); //
+
+let test: ReturnString = () => 'aa'
+
+const simple1 = foo => foo.toString();//(foo: number) => string
+const simple2: (foo: number) => string = foo => foo.toString();
+
+// 可实例化
+interface CallMeWithNewToGetString {
+  new (): string;
+  // new ():  {
+  //   defalut1:
+  // }
+}
+
+// 使用
+declare const Foolish: CallMeWithNewToGetString;
+const barrr = new Foolish(); // bar 被推断为 string 类型
+

@@ -55,3 +55,44 @@ type T3 = NonNullable<string | string[] | null | undefined>; // string | string[
 // type ReturnType<T extends (...args: any[]) => any> = T extends (...args: any[]) => infer R ? R : any;
 type T1 = ReturnType<() => string>; // string
 type T2 = ReturnType<(s: string) => void>; // void
+
+type Fruit = "apple" | "orange";
+type Color = "red" | "orange";
+
+type FruitEater = (fruit: Fruit) => number;     // eats and ranks the fruit
+type ColorConsumer = (color: Color) => string;  // consumes and describes the colors
+
+declare let f: FruitEater | ColorConsumer;
+
+f("orange"); // It works! Returns a 'number | string'.
+
+f("apple");  // error - Argument of type '"red"' is not assignable to parameter of type '"orange"'.
+
+f("red");    // error - Argument of type '"red"' is not assignable to parameter of type '"orange"'
+
+interface Dog {
+    kind: "dog"
+    dogProp: any;
+}
+interface Cat {
+    kind: "cat"
+    catProp: any;
+}
+
+const catOrDogArray: Dog[] | Cat[] = [];
+
+catOrDogArray.forEach(animal => {
+    //                ~~~~~~ error!
+    // Parameter 'animal' implicitly has an 'any' type.
+});
+
+catOrDogArray.forEach((animal: Dog | Cat) => {
+    if (animal.kind === "dog") {
+        animal.dogProp;
+        // ...
+    }
+    else if (animal.kind === "cat") {
+        animal.catProp;
+        // ...
+    }
+});

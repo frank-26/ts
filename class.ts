@@ -52,3 +52,32 @@ class Animal2 {
 
 let aaa: Animal2 = new Animal2('Jack');
 console.log(aaa.sayHi()); // My name is Jack
+
+class MyClass {
+  x = 10;
+  someCallback() {
+    console.log(this.x); // Prints 'undefined', not 10
+    this.someMethod(); // Throws error "this.method is not a function"
+  }
+  someMethod() {}
+}
+
+let obj = new MyClass();
+window.setTimeout(obj.someCallback, 10);
+
+class MyClassa {
+  static initalize() {
+    //
+  }
+}
+
+MyClassa.initalize();
+
+class Foos {
+  get bar() {
+    return 42;
+  }
+}
+let x = new Foos();
+// Expected error here
+x.bar = 10;

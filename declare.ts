@@ -7,6 +7,8 @@ declare class Animal {
   sayHi(): string;
 }
 
+export { Animal }
+
 declare enum Directions {
   Up,
   Down,
@@ -41,3 +43,7 @@ let settings: AjaxSettings = {
   }
 };
 jQuery.ajax('/api/post_something', settings);
+
+import * as foo from 'foo'
+
+console.log(foo)

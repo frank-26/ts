@@ -1,24 +1,16 @@
-function delay(milliseconds: number, count: number): Promise<number> {
-  return new Promise<number>(resolve => {
-          setTimeout(() => {
-              resolve(count);
-          }, milliseconds);
-      });
+interface IResponse < T > {
+  message: string,
+  result: T,
+  success: boolean,
 }
-
-// async function always returns a Promise
-async function dramaticWelcome(): Promise<void> {
-  console.log("Hello");
-
-  for (let i = 0; i < 5; i++) {
-      // await is converting Promise<number> into number
-      const count:number = await delay(500, i);
-      console.log(count);
+async function getResponse(): Promise < IResponse < number[] >> {
+  return {
+    message: '获取成功',
+    result: [1, 2, 3],
+    success: true,
   }
-
-  console.log("World!");
 }
-
-dramaticWelcome();
-
-JSON.parse(window.localStorage.getItem('userInfo'))
+getResponse()
+  .then(response => {
+    console.log(response.result)
+  })

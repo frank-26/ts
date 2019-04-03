@@ -37,3 +37,35 @@ enum Color3 {
   Green,   // 4
   Blue     // 5
 }
+
+
+enum AnimalFlags {
+  None        = 0,
+  HasClaws    = 1 << 0,
+  CanFly      = 1 << 1,
+  EatsFish    = 1 << 2,
+  Endangered  = 1 << 3,
+
+  EndangeredFlyingClawedFishEating = HasClaws | CanFly | EatsFish | Endangered
+}
+
+// for performance
+const enum Tristate {
+  False,
+  True,
+  Unknown
+}
+
+enum Color11 {
+  Red=33,
+  Green,
+  Blue
+}
+
+enum Color1 {
+  DarkRed = '1',
+  DarkGreen,
+  DarkBlue
+}
+
+const lie = Tristate.False;

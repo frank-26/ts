@@ -85,3 +85,82 @@ let myGenericNumber = new GenericNumber<number>();
 myGenericNumber.zeroValue = 0;
 myGenericNumber.add = function(x, y) { return x + y; };
 myGenericNumber.add(1,'2')
+
+// 创建一个泛型类
+class Queue<T> {
+  private data :T[] = [];
+  push = (item: T) => this.data.push(item);
+  pop = (): T | undefined => this.data.shift();
+}
+
+// 简单的使用
+const queue = new Queue<number>();
+queue.push(0);
+queue.push('1'); // Error：不能推入一个 `string`，只有 number 类型被允许
+
+const queueStr = new Queue<string>()
+
+queueStr.push('a');
+queueStr.push(11);
+
+
+function reverse<T>(items: T[]): T[] {
+  const toreturn = [];
+  for (let i = items.length - 1; i >= 0; i--) {
+    toreturn.push(items[i]);
+  }
+  return toreturn;
+}
+
+const sample = [1, 2, 3];
+let reversed = reverse(sample);
+
+reversed[0] = '1'; // Error
+reversed = ['1', '2']; // Error
+
+reversed[0] = 111; // ok
+reversed = [1, 2]; // ok
+
+class Utility {
+  reverse<T>(items: T[]): T[] {
+    const toreturn = [];
+    for (let i = items.length; i >= 0; i--) {
+      toreturn.push(items[i]);
+    }
+    return toreturn;
+  }
+}
+
+const getJSON = <T>(config: { url: string; headers?: { [key: string]: string } }): Promise<T> => {
+  const fetchConfig = {
+    method: 'GET',
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    ...(config.headers || {})
+  };
+  return fetch(config.url, fetchConfig).then<T>(response => response.json());
+};
+// module
+let an = new Animal('1')
+
+// 泛型的实例化类型
+class Fooo<T> {
+  foo: T;
+}
+
+const FooNumber = Fooo as { new (): Fooo<number> }; // ref 1
+
+let fon = new FooNumber()
+fon.foo = '1'
+
+// TypeScript 使用了一种结构类型的系统。当判断 Something<number> 和 Something<string> 兼容性的时候，我们会检查每一个成员的每一个属性，
+// 如果类型的每个成员都是兼容的，那么这个类型也是兼容的。因为 Something<T> 没有在任何成员中使用 T，所以 T 是什么类型并不重要。
+// 通常，你绝不应该有未使用类型的参数。该类型会有无法预料的兼容性（如上所示），同时在函数调用中也无法获取正确的泛型类型接口
+interface Something<T> {
+  name: string;
+}
+let xx: Something<number>;
+let y: Something<string>;
+// Expected error: Can't convert Something<number> to Something<string>!
+xx = y; // ???
+
