@@ -21,3 +21,36 @@ function sum1() {
 function sum(x: number, y: number): number {
   return x + y;
 }
+
+interface ArrType {
+  x: string;
+  y: number;
+}
+interface test {
+  a: Array<ArrType>;
+  b: number;
+}
+
+const t: test = {
+  a: [
+    {
+      x: '1',
+      y: 1
+    }
+  ],
+  b: 1
+};
+
+const anothert: test = t;
+
+interface Z{
+  a:string;
+}
+interface aaa{
+  z:Array<Z>;
+}
+
+
+let A:aaa ={
+  z:[]
+} 
