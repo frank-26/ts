@@ -1,8 +1,6 @@
 let fibonacci: number[] = [1, 1, 2, 3, 5, 'a'];
 fibonacci.push('8');
-
 let fibonacci1: Array<number> = [1, 1, 2, 3, 5];
-
 interface NumberArray {
   [index: number]: number;
 }

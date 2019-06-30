@@ -12,6 +12,7 @@ let mySum1: (x: number, y: number) => number = function (x: number, y: number): 
   return x + y;
 };
 
+const myfun:(x:string)=>string = (t:string):string=>t
 interface SearchFunc {
   (source: string, subString: string): boolean;
 }

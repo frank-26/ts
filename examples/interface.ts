@@ -3,6 +3,29 @@ interface Person {
   age ? : number;
   [propName: string]: any;
 }
+const people:Record<string,any> = {
+  name: 1,
+  age: 10
+}
+
+interface iPeople {
+  title: string;
+  name: string;
+}
+
+const people1: Partial<iPeople> = {
+  title: 'Delete inactive users',
+};
+
+interface iPeople1 {
+  title?: string;
+  name?: string;
+}
+
+const people11: iPeople1 = { title: 'ts' }; // OK
+
+const people222: Required<iPeople1> = { title: 'ts' }; // Error: property 'name' missing
+
 // 赋值的时候，变量的形状必须和接口的形状保持一致。
 let tom: Person = {
   name: 'Tom',
@@ -29,12 +52,14 @@ let tom3: Person1 = {
   gender: 'male'
 };
 
+type typea = Person1["name"];
+
+const typea1:typea = 1
+const typea2:typea = '1'
+
 // readonly
-interface Person2 {
-  readonly id: number;
-  name: string;
-  age ? : number;
-  [propName: string]: any;
+interface Person2 extends Person1,Person{
+  // [propName: string]: any;
 }
 
 let tom4: Person2 = {
