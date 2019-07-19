@@ -1,17 +1,15 @@
 abstract class Beings {
   public name;
   public constructor(name) {
-      this.name = name;
+    this.name = name;
   }
   public abstract sayHi();
 }
 
-
 const beings = new Beings(); // Error
 
-
 class People extends Beings {
-  public sayHi(){}
+  public sayHi() {}
 }
 
 class Animal1 {
@@ -19,7 +17,7 @@ class Animal1 {
   private age = 20;
   protected sex = 'male';
   public constructor(name) {
-      this.name = name;
+    this.name = name;
   }
 }
 
@@ -29,13 +27,12 @@ aa.name = 'Tom';
 console.log(aa.name); // Tom
 console.log(aa.age); // error
 
-
 class Cat extends Animal1 {
   constructor(age) {
-      super(age);
-      console.log(this.name);
-      console.log(this.sex);
-      console.log(this.age);
+    super(age);
+    console.log(this.name);
+    console.log(this.sex);
+    console.log(this.age);
   }
 }
 
@@ -43,15 +40,28 @@ class Cat extends Animal1 {
 class Animal2 {
   name: string;
   constructor(name: string) {
-      this.name = name;
+    this.name = name;
   }
-  sayHi(): string {
+
+  sayHi(this: Animal2, a: string): string {
+    return `My name is ${this.name} ${a}`;
+  }
+
+  sayHello(this: Animal2): string {
     return `My name is ${this.name}`;
+  }
+
+  sayYes(a: string): string {
+    return `My name is ${a}`;
   }
 }
 
 let aaa: Animal2 = new Animal2('Jack');
-console.log(aaa.sayHi()); // My name is Jack
+const aaaA = aaa.sayHi.bind(window);
+aaaA('dsfds');
+console.log(aaa.sayHi('x')); // My name is Jack
+console.log(aaa.sayHello('x')); // My name is Jack
+console.log(aaa.sayYes('x')); // My name is Jack
 
 class MyClass {
   x = 10;
