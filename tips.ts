@@ -18,3 +18,5 @@ let bar1 = createBar('sample');
 
 foo11 = bar; // Error
 foo11 = foo11; // Okey
+
+

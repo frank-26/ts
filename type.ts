@@ -170,3 +170,12 @@ getOrigin(both);//Error
 
 
 let xxxxxx:Not<{a:number,b:number}> = {b:1}
+
+enum eFoobar {
+  foo = 'foo',
+  bar = 'bar',
+}
+
+type tFooBar = { // this is `iAbilityModifiers` from the error
+  [fb in keyof eFoobar]: number;
+};

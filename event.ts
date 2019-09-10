@@ -1,4 +1,4 @@
-
+//Event interface  https://wangdoc.com/javascript/events/index.html
 export interface Listener<T> {
   (event: T): any;
 }
