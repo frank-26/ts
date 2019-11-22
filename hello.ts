@@ -1,12 +1,12 @@
-function test(a:string):string {
-  console.log(a)
-  return a
+function test(a: string): string {
+  console.log(a);
+  return a;
 }
 
-test('a')
+test('a');
 
 let myFavoriteNumber: string = 'seven';
-myFavoriteNumber = '7'; 
+myFavoriteNumber = '7';
 
 // 任意值的属性和方法:声明一个变量为任意值之后，对它的任何操作，返回的内容的类型都是任意值
 let anyThing: any = 'Tom';
@@ -17,7 +17,7 @@ anyThing.setName('Jerry');
 anyThing.setName('Jerry').sayHello();
 anyThing.myName.setFirstName('Cat');
 
-let something;//=== let something:any
+let something; //=== let something:any
 something = 'seven';
 something = 7;
 
@@ -68,7 +68,6 @@ const foo: Foo = { bar: 123, bas: 456 };
 // 不能被改变
 foo.bar = 456; // Error: foo.bar 为仅读属性
 
-
 interface Foo1 {
   readonly [x: number]: number;
 }
@@ -94,9 +93,8 @@ function iTakeFoo(foox: Foox) {
 iTakeFoo(foox);
 
 let bas = (...args: number[]) => {};
-bas()
-bas(1,2,3)
-
+bas();
+bas(1, 2, 3);
 
 const colors = {
   red: 'red',
@@ -109,3 +107,13 @@ let color: Colors; // color 的类型是 'red' | 'blue'
 color = 'red'; // ok
 color = 'blue'; // ok
 color = 'anythingElse'; // Error
+
+const Aa: {
+  x?: {b:string};
+  y: number;
+} = {
+  y: 1
+};
+
+
+console.log(Aa.x.b+Aa.y)
