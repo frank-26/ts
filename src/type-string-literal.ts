@@ -52,7 +52,7 @@ const test11: Test = {
 
 iTakeFoo11(test11.someProp); // ok
 
-// 用于创建字符串列表映射至 `K: V` 的函数
+// 用于创建字符串列表映射至 `K: V` 的函数 非常实用
 function strEnum < T extends string > (o: Array < T > ): {
   [K in T]: K
 } {
@@ -70,8 +70,15 @@ function strEnum1<T extends string>(o: Array<T>) {
     }, Object.create(null));
   }
   
+  function strEnum2(o: Array<string>) {
+    return o.reduce((res, item) => {
+      res[item] = item;
+      return res;
+    }, Object.create(null));
+  }
   // 创建 K: V
-  const Direction = strEnum1(['North', 'South', 'East', 'West']);
+  const Direction = strEnum1(['North', 'South', 'East', 'West']);//  类型自动推导也能做到
+  const Direction2 = strEnum2(['North', 123, 'East', 'West']);//  类型自动推导也能做到
   
   // 创建一个类型
   type Direction = keyof typeof Direction;
