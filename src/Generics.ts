@@ -164,3 +164,6 @@ let y: Something<string>;
 // Expected error: Can't convert Something<number> to Something<string>!
 xx = y; // ???
 
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+  return obj[key];
+}
