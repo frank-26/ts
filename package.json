@@ -1,0 +1,26 @@
+{
+  "name": "ts-getstarted",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://frank-26@github.com/frank-26/ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frank-26/ts/issues"
+  },
+  "homepage": "https://github.com/frank-26/ts#readme",
+  "devDependencies": {
+    "@yanli26/ts-package": "^1.0.4"
+  },
+  "dependencies": {
+    "@types/node": "^14.0.12"
+  }
+}

@@ -1,3 +1,7 @@
+const add = require('@yanli26/ts-package')
+
+console.log(add(1,2));
+
 function test(a: string): string {
   console.log(a);
   return a;
