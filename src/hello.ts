@@ -1,6 +1,6 @@
-const add = require('@yanli26/ts-package')
+import {add}  from '@yanli26/ts-package'
 
-console.log(add(1,2));
+console.log(add('1',2));
 
 function test(a: string): string {
   console.log(a);
