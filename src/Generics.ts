@@ -167,3 +167,30 @@ xx = y; // ???
 function getProperty<T, K extends keyof T>(obj: T, key: K) {
   return obj[key];
 }
+// 泛型支持递归
+type ListNode<T> = {
+  data: T;
+  next: ListNode<T> | null;
+};
+
+type DeepPartial<T> = T extends Function
+  ? T
+  : T extends object
+  ? { [P in keyof T]?: DeepPartial<T[P]> }
+  : T;
+
+// 现在window 上所有属性都变成了可选啦
+type PartialedWindow = DeepPartial<Window>; 
+
+interface Seal {
+  name: string;
+  url: string;
+}
+interface API {
+  "/user": { name: string; age: number; phone: string };
+  "/seals": { seal: Seal[] };
+}
+const api = <URL extends keyof API>(url: URL): Promise<API[URL]> => {
+  return fetch(url).then((res) => res.json());
+};
+api()// tips...
