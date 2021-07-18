@@ -1,5 +1,7 @@
 import {add}  from '@yanli26/ts-package'
+import {Greeter}  from '@only/greeter'
 
+console.log('Greeter: ', Greeter('s'));
 console.log(add('1',2));
 
 function test(a: string): string {

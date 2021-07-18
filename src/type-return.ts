@@ -1,6 +1,5 @@
 // 类型别名常用于联合类型。
-type Name = string;
-
+type Name = string; 
 const testName:Name = 'name'
 const testName1=()=>'testName'
 

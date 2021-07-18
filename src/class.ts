@@ -13,7 +13,7 @@ class People extends Beings {
 }
 
 class Animal1 {
-  public name;
+  public name:any;
   private age = 20;
   protected sex = 'male';
   public constructor(name) {

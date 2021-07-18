@@ -18,10 +18,16 @@
   },
   "homepage": "https://github.com/frank-26/ts#readme",
   "devDependencies": {
+    "@only/greeter": "^1.0.0",
     "@yanli26/ts-package": "^1.0.5",
     "conventional-changelog": "^3.1.21"
   },
   "dependencies": {
-    "@types/node": "^14.0.12"
+    "@keukenhof/lego": "^0.0.8",
+    "@keukenhof/utils": "^0.0.9",
+    "@types/node": "^14.0.12",
+    "add": "^2.0.6",
+    "remove": "^0.1.5",
+    "yarn": "^1.22.10"
   }
 }

@@ -8,6 +8,7 @@ const SERVICES: Record<string, string> = {
 
 // 链接：https://www.zhihu.com/question/276172039/answer/385498094
 
+let num:number = 1_2_345.6_78_9
 
 type Readonly<T> = {
     readonly [P in keyof T]: T[P];
@@ -128,3 +129,14 @@ let partialState: PartialState = {
   foo: 8,
   foo:1
 };
+
+const initCustomParams = {
+  questionType: 1,
+  difficultLevel: [1]
+}
+// 类型
+type InitCustomParamsType = typeof initCustomParams
+// key类型
+type InitCustomParamsKeyType = keyof InitCustomParamsType
+// value 类型
+type InitCustomParamsValueType = ValueOf <InitCustomParamsType>

@@ -110,3 +110,16 @@ function doStuff(q: A | B) {
     // q: B
   }
 }
+
+interface A11 {
+  a: string;
+  b: string;
+}
+
+interface AB11 extends A11 {
+  b: number;
+}
+
+type Override<T1, T2> = Omit<T1, keyof T2> & T2;
+
+type AB = Override<A, { b: number }>

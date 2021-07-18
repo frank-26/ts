@@ -179,3 +179,7 @@ enum eFoobar {
 type tFooBar = { // this is `iAbilityModifiers` from the error
   [fb in keyof eFoobar]: number;
 };
+
+const me: Person = { name: 'gzx', age: 16 ,sex:'male',ethnicity:''};
+type P = typeof me;  // { name: string, age: number | undefined }
+const you: typeof me = { name: 'mabaoguo', age: 69 }  // 可以通过编译

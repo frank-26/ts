@@ -194,3 +194,100 @@ const api = <URL extends keyof API>(url: URL): Promise<API[URL]> => {
   return fetch(url).then((res) => res.json());
 };
 api()// tips...
+
+// 
+function getProperty1<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+// the property we will get will be of type Difficulty
+enum Difficulty {
+  Easy,
+  Intermediate,
+  Hard
+}
+// defining the object we will get a property from
+let typescript_info = {
+  name: "Typescript",
+  superset_of: "Javascript",
+  difficulty: Difficulty.Intermediate,
+}
+// calling getProperty to retrieve a value from typescript_info
+let superset_of: Difficulty = 
+  getProperty1(typescript_info, 'difficulty1');
+
+  type Student = {
+    name: string;
+    age: number;
+    hasScar: boolean;
+  };
+  
+  const students: Student[] = [
+    { name: "Harry", age: 17, hasScar: true },
+    { name: "Ron", age: 17, hasScar: false },
+    { name: "Hermione", age: 16, hasScar: false }
+  ];
+  
+  // function getBy(model, prop, value) {
+  //     return model.filter(item => item[prop] === value)[0]
+  // }
+  function getBy<T>(model: T[], prop: string, value:string): T | null {
+    return model.filter(item => item[prop] === value)[0]
+}
+
+function getBy2<T, P extends keyof T>(model: T[], prop: P, value:any): T | null {
+  return model.filter(item => item[prop] === value)[0] || null
+}
+
+const result = getBy(students, "naem", "Hermione")
+
+const result2 = getBy<Student>(students, "name", "Hermione") // result: Student 
+
+
+class C {
+  x = 0;
+  y = 0;
+}
+
+type T0 = InstanceType<typeof C>;
+//    ^ = type T0 = C
+type T1 = InstanceType<any>;
+//    ^ = type T1 = any
+type T2 = InstanceType<never>;
+//    ^ = type T2 = never
+type T3 = InstanceType<string>;
+//    ^ = type T3 = any
+type T4 = InstanceType<Function>;
+type T5 = InstanceType<typeof String>;
+
+type FuncType = typeof String
+
+
+// 差集
+type T01 = Exclude<"a" | "b" | "c", "a">;
+//    ^ = type T0 = "b" | "c"
+type T11 = Exclude<"a" | "b" | "c", "a" | "b">;
+//    ^ = type T1 = "c"
+type T22 = Exclude<string | number | (() => void), Function>;
+
+// 交集
+type T03 = Extract<"a" | "b" | "c", "a" | "f">;
+//    ^ = type T0 = "a"
+type T13 = Extract<string | number | (() => void), Function>;
+
+type T04 = NonNullable<string | number | undefined>;
+//    ^ = type T0 = string | number
+type T14 = NonNullable<string[] | null | undefined>;
+//    ^ = type T1 = string[]
+
+
+declare function f1(arg: { a: number; b: string }): void;
+
+type T05 = Parameters<() => string>;
+//    ^ = type T0 = []
+type T15 = Parameters<(s: string) => void>;
+//    ^ = type T1 = [s: string]
+
+// type Exclude<T, U> = T extends U ? never : T
+type T111 = Exclude<"a" | "b" | "c", "a" | "b">;   // "c"
+type T221 = Exclude<string | number | (() => void), Function>; // string | number

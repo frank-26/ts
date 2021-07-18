@@ -32,3 +32,8 @@ class TestClass {
 type Params = ConstructorParameters<typeof TestClass>; // [string, number]
 
 type Instance = InstanceType<typeof TestClass>; // TestClass
+
+
+// infer 的中文是“推断”的意思，一般是搭配上面的泛型条件语句使用的，所谓推断，就是你不用预先指定在泛型列表中，在运行时会自动判断，不过你得先预定义好整体的结构
+
+type Foo<T> = T extends {t: infer Test} ? Test: string
